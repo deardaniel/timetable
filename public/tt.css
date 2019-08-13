@@ -1,0 +1,176 @@
+body, td, th {
+ font-family: Optima, Sans-Serif;
+ margin: 0;
+}
+h1 {
+ color: white;
+}
+
+iframe {
+ margin-bottom: 12px;
+}
+
+input, select {
+ border: 1px solid #235;
+}
+
+.button {
+ width: 40px;
+ margin: 2px;
+ background-color: #9ac;
+}
+.text, .select {
+ background-color: #e0e8ff;
+ margin: 4px;
+ width: 120px;
+}
+label {
+ line-height: 25px;
+}
+.checkbox
+{
+ border: none;
+}
+body {
+ background-color: #679;
+}
+th {
+ border: 1px solid #235;
+ width: 100px;
+ padding: 0;
+}
+th.side {
+ height: 50px;
+ background-color: #9ac;
+}
+th.top, th.corner {
+ height: 25px;
+ background-color: #78a;
+ color: white;
+}
+td {
+ border: 1px dotted #ddd;
+}
+
+table.settings td {
+ border: none;
+}
+
+#goButton {
+ float: right;
+ width: 120px;
+ margin-right: 4px;
+ height: 30px;
+}
+
+table {
+ background-color: white;
+ border-collapse: collapse;
+ border: 1px solid #235;
+}
+
+table.settings {
+ border-collapse: separate;
+ padding: 2px;
+ width: 200px;
+}
+table.settings, table.settings input, table.settings select, table.settings th {
+ border-radius: 5px;
+ -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+}
+
+a {
+ text-decoration: none;
+ color: black;
+}
+body.time-table div#container div {
+ font-family: arial;
+ font-size: 9px;
+ line-height: 110%;
+ position: absolute;
+ border: 1px solid black;
+ width: 90px;
+ _width: 96px;
+ padding: 2px;
+ overflow: hidden;
+
+ -moz-border-radius: 4px;
+ -khtml-border-radius: 4px;
+ -webkit-border-radius: 4px;
+ border-radius: 4px;
+
+ -webkit-box-shadow: 4px 4px 5px rgba(0,0,0,0.2);
+ -khtml-box-shadow: 4px 4px 5px rgba(0,0,0,0.2);
+ -moz-box-shadow: 4px 4px 5px rgba(0,0,0,0.2);
+ box-shadow: 4px 4px 5px rgba(0,0,0,0.2);
+
+}
+div.red {
+ background-color: #e99;
+}
+
+div.red-light {
+ z-index: 10;
+ background-color: #faa;
+}
+
+div.orange {
+ background-color: #fd9;
+}
+
+div.orange-light {
+ z-index: 10;
+ background-color: #fea;
+}
+
+div.yellow {
+ background-color: #f8f8b0;
+}
+
+div.yellow-light {
+ z-index: 10;
+ background-color: #ffffc0;
+}
+
+div.green {
+ background-color: #c0ffb0;
+}
+
+div.green-light {
+ z-index: 10;
+ background-color: #d0ffc0;
+}
+
+div.blue {
+ background-color: #bce;
+}
+
+div.blue-light {
+ z-index: 10;
+ background-color: #cdf;
+}
+
+div.purple {
+ background-color: #dac;
+}
+
+div.purple-light {
+ z-index: 10;
+ background-color: #ebd;
+}
+
+div.grey {
+ background-color: #ddd;
+}
+
+div.grey-light {
+ z-index: 10;
+ background-color: #eee;
+}
+div#footer {
+ color: white;
+ font-size: small;
+ text-align: right;
+ padding: 8px;
+}

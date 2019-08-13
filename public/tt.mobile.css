@@ -1,0 +1,67 @@
+body {
+	position: relative;
+}
+
+#del, #modules {
+	display: none;
+}
+#footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+table.settings {
+	-moz-box-shadow:    0px 2px 20px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0px 2px 20px rgba(0,0,0,0.8);
+	box-shadow:         0px 2px 20px rgba(0,0,0,0.8);
+	border: none;
+	margin-bottom: 32px;
+}
+
+body.time-table table#header {
+ 	width: 100%;
+	border-width: 0 0 1px 0;
+}
+
+body.time-table th.top {
+	font-size: 12px;
+}
+
+body.time-table table#timetable {
+ 	width: 100%;
+	height: 100%;
+}
+
+body.time-table div#container {
+	position: absolute;
+	top: 25px !important;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+body.time-table div#container div {
+	/*margin: 0 2px 0 4px;*/
+	width: auto;
+	top: 3px;
+	left: 4px;
+	right: 2px;
+	bottom: 6px;
+}
+
+body.time-table span {
+	display: block;
+	position: absolute;
+}
+
+#loader {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: white;
+	font-weight: bold;
+}
