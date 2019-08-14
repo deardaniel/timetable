@@ -141,6 +141,6 @@ function isMobile()
 </form>
 </table>
 </center>
-<div id="footer">Created in Sept 2006 by <a href="http://daniel.ie/">Daniel Heffernan</a>, class of 2009.</div>
+<div id="footer">Created in Sept 2006 by <a href="http://daniel.ie/">Daniel Heffernan</a>, class of 2009. <a href="https://stripe.com/jobs">Jobs</a>.</div>
 </body>
 </html>
