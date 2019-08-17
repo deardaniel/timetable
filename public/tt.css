@@ -14,10 +14,18 @@ input, select {
  border: 1px solid #235;
 }
 
+#del, #modules {
+ display: none;
+}
+
 .button {
  width: 40px;
+ height: 19px;
  margin: 2px;
  background-color: #9ac;
+}
+.text {
+ height: 19px;
 }
 .text, .select {
  background-color: #e0e8ff;

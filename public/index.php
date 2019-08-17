@@ -8,20 +8,6 @@ function getSetting($var)
   return null;
 }
 
-function queryData()
-{
- $data = array(
-  'course' => getSetting('course'),
-  'year' => getSetting('year'),
-  'extras' => getSetting('extras'),
-  'h_lec' => getSetting('h_lec'),
-  'h_tut' => getSetting('h_tut'),
-  'h_lab' => getSetting('h_lab')
- );
-
- return http_build_query($data);
-}
-
 function isMobile()
 {
  return $mobile = substr_count($_SERVER['HTTP_USER_AGENT'], 'Mobile') > 0;
@@ -35,10 +21,11 @@ function isMobile()
 <?php if (isMobile()) { ?>
 <link rel="stylesheet" type="text/css" href="tt.mobile.css" />
 <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-<script src="tt.mobile.js"></script>
-<?php } else { ?>
-<script src="tt.js"></script>
+<script>
+ window.isMobile = true;
+</script>
 <?php } ?>
+<script src="tt.js"></script>
 <title>UL Timetable</title>
 <script type="text/javascript">
 
@@ -60,7 +47,7 @@ function isMobile()
 <h1>UL Timetable</h1>
 
 <?php if (!isMobile()) : ?>
- <iframe border="0" frameborder="0" style="border: none;" name="tableFrame" src="tt.php?<?= queryData() ?>" width="620" height="480"></iframe>
+ <iframe border="0" frameborder="0" style="border: none;" name="tableFrame" src="tt.php" width="620" height="480"></iframe>
  <?php endif; ?>
 
 <table class="settings">
