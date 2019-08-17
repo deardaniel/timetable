@@ -2,9 +2,6 @@ body {
 	position: relative;
 }
 
-#del, #modules {
-	display: none;
-}
 #footer {
 	position: fixed;
 	bottom: 0;

@@ -21,10 +21,11 @@ function isMobile()
 <?php if (isMobile()) { ?>
 <link rel="stylesheet" type="text/css" href="tt.mobile.css" />
 <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-<script src="tt.mobile.js"></script>
-<?php } else { ?>
-<script src="tt.js"></script>
+<script>
+ window.isMobile = true;
+</script>
 <?php } ?>
+<script src="tt.js"></script>
 <title>UL Timetable</title>
 <script type="text/javascript">
 
