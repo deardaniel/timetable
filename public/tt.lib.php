@@ -9,8 +9,7 @@ $days[] = 'Wednesday';
 $days[] = 'Thursday';
 $days[] = 'Friday';
 
-// $modulenames = array();
-// $colours = array();
+$colours = array();
 
 function getURLContent($url, $params = array())
 {
