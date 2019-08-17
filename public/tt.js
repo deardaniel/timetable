@@ -36,29 +36,46 @@ function restoreState(state) {
  document.getElementById('h_tut').checked = state.h_tut;
  document.getElementById('h_lab').checked = state.h_lab;
 }
-function loadTable() {
+var LoadBehavior = {
+ PUSH: 1,
+ REPLACE: 2,
+ SKIP: 3
+}
+function loadTable(stateHandling) {
  var state = extractState();
  var queryStr = generateQueryString(state);
  frames['tableFrame'].document.body.innerHTML='<br /><br /><br /><br /><center><span style="font-family: Optima, Sans-Serif; font-weight: bold; color: white">Loading...</span></center>';
  frames['tableFrame'].location.href='tt.php?'+queryStr;
- window.history.pushState(state, 'UL Timetable', '/?'+queryStr)
+ switch (stateHandling) {
+  case LoadBehavior.SKIP:
+   // nothing to do!
+   break;
+  case LoadBehavior.REPLACE:
+   window.history.replaceState(state, 'UL Timetable', '/?'+queryStr)
+   break;
+  default:
+   window.history.pushState(state, 'UL Timetable', '/?'+queryStr)
+ }
  if (document.getElementById('options').checked == true)
   document.location.href='tt.ical.php?'+queryStr;
 }
 function addOption(module) {
  var select = document.forms['extrasForm'].modules.options;
- module = (typeof module === 'undefined') ? document.forms['extrasForm'].module : module;
+ var moduleInput = document.forms['extrasForm'].module;
+ var moduleValue = (typeof module === 'undefined') ? document.forms['extrasForm'].module.value : module;
  var pattern = /[a-z]{2}[0-9]{4}/i;
  var exists = false;
- for (i=0; i<select.length; i++) if (select[i].value == module.value.toUpperCase()) exists = true;
+ for (i=0; i<select.length; i++) if (select[i].value == moduleValue.toUpperCase()) exists = true;
 
  if (!exists) {
-  if (module.value.match(pattern))
-   select[select.length] = new Option(module.value.toUpperCase(), module.value.toUpperCase());
+  if (moduleValue.match(pattern))
+   select[select.length] = new Option(moduleValue.toUpperCase(), moduleValue.toUpperCase());
   else
-   alert('invalid module code');
+   alert('Invalid module code');
   }
-  module.value = "";
+  if (typeof module === 'undefined') {
+   moduleInput.value = "";
+  }
 }
 function removeOptions() {
  var select = document.forms['extrasForm'].modules.options;
@@ -66,6 +83,11 @@ function removeOptions() {
 }
 document.addEventListener('DOMContentLoaded', function() {
  frames['tableFrame'].window.addEventListener('DOMContentLoaded', function() {
-  loadTable();
+  loadTable(LoadBehavior.REPLACE);
  });
+
+ window.onpopstate = function(event) {
+  restoreState(event.state);
+  loadTable(LoadBehavior.SKIP);
+ };
 });
