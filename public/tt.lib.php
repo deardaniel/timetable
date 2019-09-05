@@ -84,8 +84,8 @@ function scrape($course=null, $year=null, $extras=null)
 			array(
 				'ctl00$MainContent$CourseYearDropdown' => $year,
 				'ctl00$MainContent$CourseDropdown' => 'LM'.$course,
-				'__VIEWSTATE' => file_get_contents('data/course.viewstate'),
-				'__EVENTVALIDATION' => file_get_contents('data/course.eventvalidation')
+				'__VIEWSTATE' => file_get_contents('data/courses.viewstate'),
+				'__EVENTVALIDATION' => file_get_contents('data/courses.eventvalidation')
 			),
 			'table#MainContent_CourseTimetableGridView td'
 		);
@@ -98,8 +98,8 @@ function scrape($course=null, $year=null, $extras=null)
 				'https://www.timetable.ul.ie/UA/ModuleTimetable.aspx',
 				array(
 					'ctl00$MainContent$DropDownList1' => $m,
-					'__VIEWSTATE' => file_get_contents('data/module.viewstate'),
-					'__EVENTVALIDATION' => file_get_contents('data/module.eventvalidation'),
+					'__VIEWSTATE' => file_get_contents('data/modules.viewstate'),
+					'__EVENTVALIDATION' => file_get_contents('data/modules.eventvalidation'),
 				),
 				'table#MainContent_ModuleTimetableGridView td',
 				isset($data) ? $data : null
