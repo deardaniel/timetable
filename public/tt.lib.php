@@ -42,7 +42,7 @@ function extract_data($url, $formData, $selector, $data=null)
 		}
 
 		$day = array_search($element, $element->parent()->children, TRUE);
-		preg_match_all("/(?<start>\d{2}:\d{2}) \- (?<end>\d{2}:\d{2})<br \/>(?<module>[A-Z0-9]+) \- (?<type>[A-Z]+)( \- (?<group>[A-Z0-9]+))?<br \/> (?<lecturer>.+?)<br \/> (?<room>[A-Z0-9]+)<br \/>(Wks:)?[0-9-]+/", $element->innertext, $matches, PREG_SET_ORDER);
+		preg_match_all("/(?<start>\d{2}:\d{2}) \- (?<end>\d{2}:\d{2})<br \/>(?<module>[A-Z0-9]+) \- (?<type>[A-Z]+)( \- (?<group>[A-Z0-9]+))?<br \/> (?<lecturer>.+?)<br \/> (?<room>[A-Z0-9 ]+)<br \/>(Wks:)?[0-9-]+/", $element->innertext, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			// echo var_dump($match);
 
