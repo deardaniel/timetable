@@ -1,54 +1,70 @@
-require 'open-uri'
+require 'curb'
 require 'nokogiri'
 require 'json'
 
-def get(type)
-  raise 'type must be :course or :module' unless %i[course module].include?(type)
+class Timetable
+  def initialize
+    super
 
-  puts "Downloading #{type} data..."
+    @curl = Curl::Easy.new
+    @curl.enable_cookies = true
+    @curl.url = 'https://www.timetable.ul.ie/UA/Default.aspx'
+    raise "Failed init" unless @curl.perform
+  end
 
-  url = "https://www.timetable.ul.ie/UA/#{type.capitalize}Timetable.aspx".freeze
-  # url = "#{type.capitalize}Timetable.aspx".freeze
-  doc = Nokogiri::HTML(open(url))
-  nodes = doc.xpath('//select[contains(@class, "DropDownSearch")][last()]/option[not(@value=-1)]')
-  nodes.map do |node|
-    {
-      code: node.attr('value'),
-      name: node.text
-    }
+  def fetch_courses
+    fetch(:course).map do |c|
+      {
+        code: c[:code],
+        name: c[:name].sub(/ \(#{c[:code]}\)\z/, '')
+      }
+    end
+  end
+
+  def fetch_modules
+    fetch(:module).map do |m|
+      [
+        m[:code],
+        m[:name].sub(/\A#{m[:code]} - /, '')
+                .downcase
+                .gsub(/\b('?[a-z])/, &:capitalize)
+      ]
+    end.to_h
+  end
+
+  private
+  def fetch(type)
+    raise 'type must be :course or :module' unless %i[course module].include?(type)
+
+    puts "Downloading #{type} data..."
+
+    @curl.url = "https://www.timetable.ul.ie/UA/#{type.capitalize}Timetable.aspx"
+    raise "Failed to GET #{@curl.url}" unless @curl.perform
+
+    doc = Nokogiri::HTML(@curl.body_str)
+    nodes = doc.xpath('//select[contains(@class, "DropDownSearch")][last()]/option[not(@value=-1)]')
+    puts "Found #{nodes.count} nodes."
+    nodes.map do |node|
+      {
+        code: node.attr('value'),
+        name: node.text
+      }
+    end
   end
 end
 
-def get_courses
-  get(:course).map do |c|
-    {
-      code: c[:code],
-      name: c[:name].sub(/ \(#{c[:code]}\)\z/, '')
-    }
-  end
-end
-
-def get_modules
-  get(:module).map do |m|
-    [
-      m[:code],
-      m[:name].sub(/\A#{m[:code]} - /, '')
-              .downcase
-              .gsub(/\b('?[a-z])/, &:capitalize)
-    ]
-  end.to_h
-end
+timetable = Timetable.new
 
 {
-  modules: get_modules,
-  courses: get_courses
+  modules: timetable.fetch_modules,
+  courses: timetable.fetch_courses
 }.each do |type, data|
   filename = "public/data/#{type}.json"
   tmp_filename = "#{filename}.tmp"
 
   json = data.to_json
 
-  puts "Writing #{data.count} (#{json.length} bytes) to #{filename}..."
+  puts "Writing #{data.count} entries (#{json.length} bytes) to #{filename}..."
 
   File.open(tmp_filename, 'w+') { |f| f.write(json) }
   File.rename(tmp_filename, filename)
