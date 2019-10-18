@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    curb (0.9.10)
+    mini_portile2 (2.4.0)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  curb (~> 0.9.10)
+  nokogiri (= 1.9.1)
+
+BUNDLED WITH
+   1.17.3
