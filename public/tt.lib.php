@@ -82,8 +82,8 @@ function scrape($course=null, $year=null, $extras=null)
 		$data = extract_data(
 			'https://www.timetable.ul.ie/UA/CourseTimetable.aspx',
 			array(
-				'ctl00$MainContent$CourseYearDropdown' => $year,
-				'ctl00$MainContent$CourseDropdown' => 'LM'.$course,
+				'ctl00$HeaderContent$CourseYearDropdown' => $year,
+				'ctl00$HeaderContent$CourseDropdown' => 'LM'.$course,
 				'__VIEWSTATE' => file_get_contents('data/courses.viewstate'),
 				'__EVENTVALIDATION' => file_get_contents('data/courses.eventvalidation')
 			),
@@ -97,7 +97,7 @@ function scrape($course=null, $year=null, $extras=null)
 			$data = extract_data(
 				'https://www.timetable.ul.ie/UA/ModuleTimetable.aspx',
 				array(
-					'ctl00$MainContent$DropDownList1' => $m,
+					'ctl00$HeaderContent$DropDownList1' => $m,
 					'__VIEWSTATE' => file_get_contents('data/modules.viewstate'),
 					'__EVENTVALIDATION' => file_get_contents('data/modules.eventvalidation'),
 				),
