@@ -77,7 +77,7 @@ function extract_data($url, $formData, $selector, $data=null)
 function scrape($course=null, $year=null, $extras=null)
 {
 	if ($course && $year) {
-		srand($course.$year);
+		srand(intval(preg_replace('/[^\d]/', '', $course.$year)));
 
 		$data = extract_data(
 			'https://www.timetable.ul.ie/UA/CourseTimetable.aspx',
