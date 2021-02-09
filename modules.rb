@@ -16,7 +16,7 @@ class Timetable
     results = fetch(:course)
     results[:results].map! do |c|
       {
-        code: c[:code],
+        code: c[:code].scan(/LM\d+/).first,
         name: c[:name].sub(/ \(#{c[:code]}\)\z/, '')
       }
     end
