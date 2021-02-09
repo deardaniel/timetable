@@ -2,9 +2,21 @@ body, td, th {
  font-family: Optima, Sans-Serif;
  margin: 0;
 }
-h1 {
+h1, p {
  color: white;
 }
+h1 {
+ margin-bottom: 80px;
+}
+p {
+ width: 50%;
+}
+
+p a {
+ color: white;
+ text-decoration: underline;
+}
+
 
 iframe {
  margin-bottom: 12px;
@@ -179,6 +191,6 @@ div.grey-light {
 div#footer {
  color: white;
  font-size: small;
- text-align: right;
- padding: 8px;
+ text-align: center;
+ padding: 80px 8px 8px 8px;
 }

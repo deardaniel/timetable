@@ -46,7 +46,11 @@ function isMobile()
 <center>
 <h1>UL Timetable</h1>
 
-<?php if (!isMobile()) : ?>
+<p>Well, we had a good run.</p>
+<p>This site was made over 10 years ago and has served over 70,000 students, but it has become more and more difficult to maintain as the <a href="https://timetable.ul.ie">official UL Timetable</a> has been more actively maintained, and as this project became less maintained, and it's time to call it quits.</p>
+<p>If you're looking for a great place to build your career, check out <a href="https://stripe.com/jobs">Stripe</a>.</p>
+<p>If you're looking to build a re-incarnation of this site, talk to the maintainers of the official UL Timetable, or look into using a tool like <a href="https://www.selenium.dev/">Selenium</a> or <a href="https://pptr.dev/">Puppeteer</a>.</p>
+<?php /* <?php if (!isMobile()) : ?>
  <iframe border="0" frameborder="0" style="border: none;" name="tableFrame" src="tt.php" width="620" height="480"></iframe>
  <?php endif; ?>
 
@@ -126,7 +130,7 @@ function isMobile()
  </td>
 </tr>
 </form>
-</table>
+</table>*/ ?>
 </center>
 <div id="footer">Created in Sept 2006 by <a href="http://daniel.ie/">Daniel Heffernan</a>, class of 2009. <a href="https://stripe.com/jobs">Jobs</a>.</div>
 </body>
