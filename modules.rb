@@ -17,6 +17,7 @@ class Timetable
     results[:results].map! do |c|
       {
         code: c[:code].scan(/LM\d+/).first,
+        full_name: c[:code],
         name: c[:name].sub(/ \(#{c[:code]}\)\z/, '')
       }
     end

@@ -42,7 +42,7 @@ function extract_data($url, $formData, $selector, $data=null)
 		}
 
 		$day = array_search($element, $element->parent()->children, TRUE);
-		preg_match_all("/(?<start>\d{2}:\d{2}) \- (?<end>\d{2}:\d{2})<br \/>(?<module>[A-Z0-9]+) \- (?<type>[A-Z]+)( \- (?<group>[A-Z0-9]+))?<br \/> (?<lecturer>.+?)<br \/>( (?<room>[A-Z0-9 ]+))?<br \/>(Wks:)?[0-9-]+/", $element->innertext, $matches, PREG_SET_ORDER);
+		preg_match_all("/(?<start>\d{2}:\d{2}) \- (?<end>\d{2}:\d{2})<br \/>(?<module>[A-Z0-9]+) \- (?<type>[A-Z]+)( \- (?<group>[A-Z0-9]+))?<br \/> (?<lecturer>.+?)<br \/>( (?<room>[A-Z0-9 ]+))?(<br \/>)?(Wks:)?[0-9-,]+/", $element->innertext, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			// echo var_dump($match);
 
@@ -74,16 +74,28 @@ function extract_data($url, $formData, $selector, $data=null)
 	return $data;
 }
 
+function getFullCourse($course)
+{
+	$courses = json_decode(file_get_contents('data/courses.json'), true);
+	foreach ($courses as $c) {
+		if ($c['code'] == 'LM'.$course) {
+			echo $c['full_name'];
+			return $c['full_name'];
+		}
+	}
+}
+
 function scrape($course=null, $year=null, $extras=null)
 {
 	if ($course && $year) {
 		srand(intval(preg_replace('/[^\d]/', '', $course.$year)));
+		$fullCourse = getFullCourse($course);
 
 		$data = extract_data(
 			'https://www.timetable.ul.ie/UA/CourseTimetable.aspx',
 			array(
 				'ctl00$HeaderContent$CourseYearDropdown' => $year,
-				'ctl00$HeaderContent$CourseDropdown' => 'LM'.$course,
+				'ctl00$HeaderContent$CourseDropdown' => $fullCourse,
 				'__VIEWSTATE' => file_get_contents('data/courses.viewstate'),
 				'__EVENTVALIDATION' => file_get_contents('data/courses.eventvalidation')
 			),
