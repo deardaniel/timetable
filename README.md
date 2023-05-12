@@ -1,3 +1,7 @@
+The code for https://tt.daniel.ie/. This goes way back to 2006, when I thought regexes were the best way to parse HTML.
+
+It no longer works.
+
 ## Run development server
 
 ```
